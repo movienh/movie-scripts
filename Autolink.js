@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const clean = item.trim();
         const filename = clean.replace(/\s+/g, "-");
         const link = `/${map[cls]}/${filename}.html`;
-        return `<a href="${link}" style="color:#007BFF;text-decoration:none">${clean}</a>`;
+        // har naam ke baad comma lagao
+        return `<a href="${link}" style="color:#007BFF;text-decoration:none">${clean}</a>,`;
       }).join(" ");
     });
   });
