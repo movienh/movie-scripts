@@ -11,12 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
   Object.keys(map).forEach(cls => {
     document.querySelectorAll(`.${cls}`).forEach(el => {
       const items = el.innerText.split(",");
-      el.innerHTML = items.map(item => {
-        const clean = item.trim();
+      el.innerHTML = items.map((item, i) => {
+        // Trim + multiple spaces ko single space me convert
+        const clean = item.trim().replace(/\s+/g, " ");
         const filename = clean.replace(/\s+/g, "-");
         const link = `/${map[cls]}/${filename}.html`;
-        // har naam ke baad comma lagao
-        return `<a href="${link}" style="color:#007BFF;text-decoration:none">${clean}</a>,`;
+        // Last item ke baad comma na lagao
+        const comma = (i < items.length - 1) ? "," : "";
+        return `<a href="${link}" style="color:#007BFF;text-decoration:none">${clean}</a>${comma}`;
       }).join(" ");
     });
   });
